@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/.*",
+      "headers": {
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Origin": "*"
+      },
+      "continue": true
+    },
+    {
+      "src": "/.*",
+      "methods": [
+        "OPTIONS"
+      ],
+      "dest": "/cors/cors-handler.js"
+    }
+  ]
+}
