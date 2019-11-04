@@ -1,7 +1,7 @@
 import React from 'react';
+import Router from 'next/router';
 
-import { withProviders } from '../../hocs/withProviders';
-
+import { withProviders } from 'hocs/withProviders';
 import { createOrderDetailsAction } from 'api/actions';
 import { OrderDetails } from 'app/orderDetails/OrderDetails';
 import { Header } from 'core/header/Header';
@@ -17,8 +17,12 @@ const OrderDetailsPage = ({ order }) => (
 
 OrderDetailsPage.getInitialProps = async ctx => {
   if (!ctx.authService.getToken()) {
-    ctx.res.writeHead(302, { Location: '/' });
-    ctx.res.end();
+    if (ctx.res) {
+      ctx.res.writeHead(302, { Location: '/' });
+      ctx.res.end();
+    } else {
+      Router.push('/');
+    }
   }
 
   const order = await ctx.client.query(createOrderDetailsAction(ctx.query.id));

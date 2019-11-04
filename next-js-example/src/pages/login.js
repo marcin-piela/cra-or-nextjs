@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMutation } from 'react-fetching-library';
+import Router from 'next/router';
 
 import { withProviders } from 'hocs/withProviders';
 import { createLoginAction } from 'api/actions';
@@ -13,8 +14,12 @@ const LoginPage = () => {
 
 LoginPage.getInitialProps = async ctx => {
   if (ctx.authService.getToken()) {
-    ctx.res.writeHead(302, { Location: '/orders' });
-    ctx.res.end();
+    if (ctx.res) {
+      ctx.res.writeHead(302, { Location: '/orders' });
+      ctx.res.end();
+    } else {
+      Router.push('/orders');
+    }
   }
 
   return {};
