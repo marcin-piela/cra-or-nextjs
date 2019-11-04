@@ -1,0 +1,977 @@
+import {
+  CodeSurfer,
+  CodeSurferColumns,
+  Step,
+} from "code-surfer";
+import { github, dracula } from "@code-surfer/themes";
+import { Appear, Image, Split, Notes} from 'mdx-deck'
+import TextRight from './components/TextRight';
+import ImageBackground from './components/ImageBackground';
+import Legend from './components/Legend';
+import NextLogo from './components/NextLogo';
+import clientRendering from './images/client-rendering-tti.png';
+import infographic from './images/infographic.png';
+import craflow from './images/craflow.png';
+import nextjsflow from './images/nextjsflow.png';
+import structure from './images/structure1.png';
+import routing from './images/structure2.png';
+import ssr from './images/rehydration-tti.png';
+import diagram from './images/diagram.png';
+import meme1 from './images/meme1.jpeg';
+import meme2 from './images/meme2.png';
+import { condensed } from 'mdx-deck/themes';
+
+export const themes = [condensed, dracula]
+
+# CRA vs Next.js
+
+##### Co jest lepsze? 🤔
+<TextRight>Autor: Marcin Piela</TextRight>
+
+---
+
+# CRA or Next.js?
+
+##### Wybierajmy narzędzia według potrzeb 👍
+<TextRight>Autor: Marcin Piela</TextRight>
+
+---
+
+# Zalety CRA
+
+<ul>
+  <Appear>
+  <li>Bardzo mały próg wejścia</li>
+  <li>Dostęp do wszystkich nowych ficzerów Reacta</li>
+  <li>Utrzymywane przez Facebooka</li>
+  <li>Wbudowane wsparcie dla Jest, Prettiera, SASS, TS, Flow etc</li>
+  <li>Wbudowane wsparcie dla PWA</li>
+  <li>Niski koszt hostingu</li>
+  <li>....</li>
+  </Appear>
+</ul>
+
+---
+
+# Wady CRA
+
+<ul>
+  <Appear>
+  <li>Ciężko zmienić konfigurację bez ejectowania</li>
+  <li>Mało pomocne jeśli chcemy zmigrować<br/>istniejącą aplikacje do Reacta</li>
+  <li>"opinionated"</li>
+  <li>Trudno wypozycjonować aplikację</li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- Trzeba uzywac dodatkowe biblioteki takie jak react-app-rewired
+- Konfiguracja tylko pod React
+- Chodzi o to, ze mamy tutaj z góry okreslona strukture i konfiguracje
+- Przez wypozycjonowanie mam na mysli wysokie miejsce w wynikach google, czeste aktualizacje wypozycjonowanych stron i przede wszystkim optymalizacje pod katem wydajnosci
+
+</Notes>
+
+---
+
+<ImageBackground src={craflow} size="50%" title="Server <> Browser w CRA"></ImageBackground>
+
+---
+
+<ImageBackground src={clientRendering} size="50%" title="Czym jest CSR"><Legend /></ImageBackground>
+
+---
+
+# Demo CRA
+
+---
+
+<div style={{width: '80%', fontSize: '2.4rem'}}>
+"What happens when you use React without server-side rendering is that the crawler halts on the very first page because it can’t see any hyperlinks to follow...It makes the crawl process incredibly slow and inefficient. And that is why websites built on React (and similar JavaScript platforms) perform worse in Google than websites that primarily serve plain HTML to the crawler....plain HTML websites can be crawled very efficiently, newly added and changed content will be crawled and indexed much quicker, and Google is much better able to evaluate the crawl priority of individual pages on such websites."
+<br/><br/>
+<i>Barry Adams, SEO Expert</i>
+
+</div>
+
+
+---
+
+<NextLogo/>
+
+<Notes>
+-  Framework do SSR, w ktorym aplikacje piszemy w React.js
+-  On tez jest opinionated, tez tylko do reacta, ale pozwala nam dobrze pozycjonowac strony
+- Uzywane m.in przez netflix (jobs), twitch, hulu, uber marketplace, invision, material-ui, ferrari etc, dla CRA ciezko znaleźć, ale jednak ponad milion ponad 1.3M repo na githubie robi wrazenie
+</Notes>
+
+---
+
+<ImageBackground style={{paddingTop: '70px'}} src={meme1} size="100%"></ImageBackground>
+
+---
+
+# Zalety Next.js
+
+<ul>
+  <Appear>
+  <li>SSR</li>
+  <li>Automatyczny code splitting na poziomie stron</li>
+  <li>Dobrze się pozycjonuje</li>
+  <li>Możliwość wyeksportowania do statycznej strony</li>
+  <li>Zoptymalizowany do produkcyjnego użycia</li>
+  <li>Łatwo rozszerzalny (babel, webpack)</li>
+  <li>Wsparcie dla AMP, PWA</li>
+  </Appear>
+</ul>
+
+<Notes>
+
+- Mozliwosc zdeployowania kazdej strony jako osobny serverless
+- Budujac aplikacje za pierwszym razem czas buildu moze byc dluzszy, ale dzieki cacheowaniu kolejny build zaktualizuje tylko to co faktycznie sie zmienilo, wiec zmieniajac np. jeden tekst w naszej aplikacji build bedzie trwal kilka sekund
+
+</Notes>
+
+---
+
+# Wady Next.js
+
+<ul>
+  <Appear>
+  <li>Spory próg wejścia</li>
+  <li>Większy koszt utrzymania</li>
+  <li>Ograniczony routing dynamiczny</li>
+  <li>Nie możemy korzystać ze wszystkich nowości reacta</li>
+  </Appear>
+</ul>
+
+---
+
+<ImageBackground src={nextjsflow} size="50%" title="Server<>Browser w Next.js"></ImageBackground>
+
+---
+
+<ImageBackground src={ssr} size="50%" title="Czym jest SSR"><Legend /></ImageBackground>
+
+---
+
+<ImageBackground src={infographic} size="40%" title="Server<>Browser" ><Legend /></ImageBackground>
+
+---
+
+<ImageBackground style={{paddingTop: '0px'}} src={meme2} size="50%"></ImageBackground>
+
+---
+
+<ImageBackground src={structure} size="40%" title="Struktura projektu" ></ImageBackground>
+
+<Notes>
+
+- Kazdy plik jest osobnym routem
+- Slaby routing dynamiczny, w ktorym nie mamy wildcarda
+- Mamy specjalne pliki, _document.js do tego aby zintegrowac sie z bibliotekami UI, css-in-js oraz dodac naglowki na stronie
+- _app.js do tego aby ustawic context aplikacji next.js, globalne contexty reactowe, czy wspoldzielic stan miedzy stronami
+
+
+</Notes>
+
+---
+
+<ImageBackground src={routing} size="40%" title="Routing" ></ImageBackground>
+
+---
+
+<CodeSurfer>
+
+```js title="Przykładowa strona"
+
+import React from 'react';
+
+const TestPage = () => {
+  return (
+    <section>
+      <header>Orders page</header>
+      <p>Your orders count: 0</p>
+    </section>
+  );
+};
+
+export default TestPage;
+
+```
+
+
+```js
+
+import React from 'react';
+
+const TestPage = ({orders}) => {
+  return (
+    <section>
+      <header>Orders page</header>
+      <p>Your orders count: {orders.length}</p>
+    </section>
+  );
+};
+
+TestPage.getInitialProps = async ctx => {
+  const orders = await fetch('/orders').then(res => res.json());
+
+  return { orders };
+};
+
+export default TestPage;
+
+```
+
+```js
+
+import React from 'react';
+
+const TestPage = ({orders}) => {
+  return (
+    <section>
+      <header>Orders page</header>
+      <p>Your orders count: {orders.length}</p>
+    </section>
+  );
+};
+
+TestPage.getInitialProps = async ctx => {
+  if (isNotAuthorized()) {
+    ctx.res.writeHead(302, { Location: '/' });
+    ctx.res.end();
+  }
+
+  const orders = await fetch('/orders').then(res => res.json());
+
+  return { orders };
+};
+
+export default TestPage;
+
+```
+
+```js
+
+import React from 'react';
+import Router from 'next/router';
+
+const TestPage = ({orders}) => {
+  return (
+    <section>
+      <header>Orders page</header>
+      <p>Your orders count: {orders.length}</p>
+    </section>
+  );
+};
+
+TestPage.getInitialProps = async ctx => {
+  if (ctx.req && isNotAuthorized()) {
+    ctx.res.writeHead(302, { Location: '/' });
+    ctx.res.end();
+  } else if (isNotAuthorized()) {
+    Router.push('/')
+  }
+
+  const orders = await fetch('/orders').then(res => res.json());
+
+  return { orders };
+};
+
+export default TestPage;
+
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- W takim przypadku strona bedzie zoptymalizowana statycznie, czyli wygenerowany zostanie plik .html, czyli na dany request odpowiedzia bedzie plik .html
+- Rzadko mamy doczynienia gdyz chcemy wyrenderowac tresc w zaleznosci od usera, cookies, chcemy pobrac dane z API
+- Do tego sluzy asynchroniczna statyczna medota getInitialProps, ktora przyjmuje context aplikacji next.js jako parametr
+- W tym miejscu rowniez bedziemy dodawac przekierowania, sprawdzac czy user jest zautoryzowany itd
+- Musimy pamietac o jednej waznej rzeczy, getInitialProps jest odpalane rowniez po stronie klienta podczas przejscia miedzy stronami
+
+</Notes>
+
+---
+
+parametry getInitialProps:
+
+<div style={{width: '80%'}}>
+<ul>
+<Appear>
+<li>pathname - aktualny adres</li>
+<li>query - obiekt z query paramsami</li>
+<li>asPath - aktualna ścieżka</li>
+<li>req - obiekt HTTP request (tylko po stronie serwera)</li>
+<li>res - obiekt HTTP response (tylko po stronie serwera)</li>
+<li>err - obiekt Error</li>
+</Appear>
+</ul>
+</div>
+
+<Notes>
+
+- asPath jest prawdziwym adresem np "posts/1", a pathname to "posts/[id]"
+
+</Notes>
+
+---
+
+O czym należy pamiętać?
+
+<div style={{width: '80%'}}>
+<ul>
+<Appear>
+<li>getInitialProps będzie wykonywać się na serwerze oraz po stronie klienta podczas przejścia miedzy stronami</li>
+<li>wykonanie po stronie klienta opóźnia przejścia do strony</li>
+<li>każde dodanie getInitialProps do strony automatycznie wyklucza ją ze statycznej optymalizacji</li>
+<li>getInitialProps dodane do dziecka nie wykona się</li>
+</Appear>
+</ul>
+</div>
+
+---
+
+
+<CodeSurfer>
+
+```js title="_app.js"
+
+import React from 'react'
+import App from 'next/app'
+
+class MyApp extends App {
+  render() {
+    const { Component, pageProps } = this.props
+    return <Component {...pageProps} />
+  }
+}
+
+export default MyApp
+```
+
+```js 
+
+import React from 'react'
+import App from 'next/app'
+
+class MyApp extends App {
+  static async getInitialProps(appContext) {
+    const appProps = await App.getInitialProps(appContext);
+    return { ...appProps }
+  }
+
+  render() {
+    const { Component, pageProps } = this.props
+    return <Component {...pageProps} />
+  }
+}
+
+export default MyApp
+```
+
+```js 
+
+import React from 'react'
+import App from 'next/app'
+
+class MyApp extends App {
+  static async getInitialProps(appContext) {
+    appContext.ctx.apiClient = ApiClient;
+    const appProps = await App.getInitialProps(appContext);
+    return { ...appProps, test: true }
+  }
+
+  render() {
+    const { Component, pageProps, test } = this.props
+    return <Component {...pageProps} />
+  }
+}
+
+export default MyApp
+```
+
+```js 
+
+import React from 'react'
+import { ThemeProvider } from 'ui-library'
+import App from 'next/app'
+
+class MyApp extends App {
+  static async getInitialProps(appContext) {
+    appContext.ctx.apiClient = ApiClient;
+    const appProps = await App.getInitialProps(appContext);
+    return { ...appProps, test: true }
+  }
+
+  render() {
+    const { Component, pageProps, test } = this.props
+    return (
+      <ThemeProvider value={test}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    )
+  }
+}
+
+export default MyApp
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- to jest tez miejsce do dodania wspoldzielonego stanu aplikacji czy contextow reactowych
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```js title="_document.js"
+import React from 'react';
+import Document, { Head, Main, NextScript } from 'next/document';
+
+export default class MyDocument extends Document {
+  render() {
+    return (
+      <html lang="en">
+        <Head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
+          <meta name="description" content="Next.js example app" />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    );
+  }
+}
+```
+
+```js
+import React from 'react';
+import Document, { Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheets } from '@material-ui/styles';
+
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const sheets = new ServerStyleSheets();
+    const originalRenderPage = ctx.renderPage;
+
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: App => props => sheets.collect(<App {...props} />),
+      });
+
+    const initialProps = await Document.getInitialProps(ctx);
+
+    return {
+      ...initialProps,
+      // Styles fragment is rendered after the app and page rendering finish.
+      styles: [...initialProps.styles, sheets.getStyleElement()],
+    };
+  }
+
+  render() {
+    return (
+      <html lang="en">
+        <Head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
+          <meta name="description" content="Next.js example app" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </html>
+    );
+  }
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- dodawanie/ustawianie naglowkow
+- integracja z bibliotekami UI czy CSS-IN-JS
+- w tym przykladzie dbamy o to aby nie doszlo do FOUC (flash of unstyled content)
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```js title="_error.js"
+
+import React from 'react'
+
+function Error({ statusCode }) {
+  return (
+    <p>
+      {statusCode
+        ? `An error ${statusCode} occurred on server`
+        : 'An error occurred on client'}
+    </p>
+  )
+}
+
+Error.getInitialProps = ({ res, err }) => {
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+  return { statusCode }
+}
+
+export default Error
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js title="pages/api/test.js " subtitle="GET /api/test"
+
+export default (req, res) => {
+}
+
+```
+
+```js title="pages/api/test.js " subtitle="GET /api/test"
+
+export default (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+  res.statusCode = 200
+  res.end(JSON.stringify({ name: 'Nextjs' }))
+}
+
+```
+
+```js title="pages/api/test.js " subtitle="GET /api/test"
+
+export default (req, res) => {
+  res.json({ name: 'Nextjs' })
+}
+
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- Next.js jest frameworkiem, dlatego tez daje nam wiecej niz samo SSR, m.in mozliwosc tworzenia API
+
+</Notes>
+
+
+---
+
+## Współdzielenie danych <br/>między serwerem a klientem
+
+<ul>
+<Appear>
+<li>Za pomocą .getInitialProps w komponencie Page</li>
+<li>Za pomocą .getInitialProps w _app.js oraz przypisaniu danych do ctx</li>
+<li>Za pomocą react context i inicjalizacji w _app.js</li>
+<li>Ale...</li>
+</Appear>
+</ul>
+
+<Notes>
+
+- Mamy nastepuje sposoby...
+- Czesto chcemy pobrac jakies dane po stronie serwera i udostepnic je po stronie klienta, np token z cookies, ustawienia uzytkownika i nie chcemy po stronie klienta ponownie odpytywac API
+- Problem polega na tym ze raczej nie chcemy takich rzeczy dodawac w getInitialProps w pliku _app.js, a w poszczegolnych stronach nie chcemy robic COPY PASTE
+- Z pomoca przychodza nam HOOKI
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```js title="HOC HOC HOC..."
+
+import React from 'react';
+
+import { SettingsContextProvider } from 'context/settings';
+
+export const withSettings = (PageComponent) => {
+  const WithSettings = ({ settings,  ...props }) => {
+    return (
+      <SettingsContextProvider value={settings}>
+        <PageComponent {...props} />
+      </SettingsContextProvider>
+    );
+  };
+
+  return WithSettings;
+};
+```
+
+```diff 7[26:34] subtitle="Skąd pobrać settings?"
+
+```
+
+```js
+
+import React from 'react';
+
+import { SettingsContextProvider } from 'context/settings';
+
+export const withSettings = (PageComponent) => {
+  const WithSettings = ({ settings,  ...props }) => {
+    return (
+      <SettingsContextProvider value={settings}>
+        <PageComponent {...props} />
+      </SettingsContextProvider>
+    );
+  };
+
+  WithSettings.getInitialProps = async ctx => {
+    const settings = await ctx.apiClient.query({endpoint: '/settings'});
+
+    // Run getInitialProps from HOCed PageComponent
+    const pageProps =
+      typeof PageComponent.getInitialProps === 'function' ? await PageComponent.getInitialProps(ctx) : {};
+
+    // Pass props to PageComponent
+    return {
+      settings,
+      ...pageProps,
+    };
+  };
+
+  return WithSettings;
+};
+```
+
+```diff 16 subtitle="Pobieramy dane klientem API"
+
+```
+
+```diff 24 subtitle="Zwracamy dane do komponentu"
+
+```
+
+
+```diff 7 subtitle="Ale?"
+
+```
+
+```js 
+
+import React from 'react';
+
+import { SettingsContextProvider } from 'context/settings';
+
+let contextValue;
+
+const getSettingsValue = ctx => {
+  if (typeof window === 'undefined' || !contextValue) {
+    const settings = await ctx.apiClient.query({endpoint: '/settings'})
+
+    if (typeof window !== 'undefined') {
+      contextValue = settings;
+    }
+
+    return settings;
+  }
+
+  return contextValue;
+};
+
+export const withSettings = (PageComponent) => {
+  const WithSettings = ({ settings,  ...props }) => {
+    return (
+      <SettingsContextProvider value={settings}>
+        <PageComponent {...props} />
+      </SettingsContextProvider>
+    );
+  };
+
+  WithSettings.getInitialProps = async ctx => {
+    const settings = getSettingsValue(ctx);
+
+    // Run getInitialProps from HOCed PageComponent
+    const pageProps =
+      typeof PageComponent.getInitialProps === 'function' ? await PageComponent.getInitialProps(ctx) : {};
+
+    // Pass props to PageComponent
+    return {
+      settings,
+      ...pageProps,
+    };
+  };
+
+  return WithSettings;
+};
+```
+
+```js 
+
+import React from 'react';
+
+import { SettingsContextProvider } from 'context/settings';
+
+let contextValue;
+
+const getSettingsValue = ctx => {
+  if (typeof window === 'undefined' || !contextValue) {
+    const settings = await ctx.apiClient.query({endpoint: '/settings'})
+
+    if (typeof window !== 'undefined') {
+      contextValue = settings;
+    }
+
+    return settings;
+  }
+
+  return contextValue;
+};
+
+export const withSettings = (PageComponent) => {
+  const WithSettings = ({ settings,  ...props }) => {
+    useEffect(() => {
+        contextValue = settings;
+    }, []);
+
+    return (
+      <SettingsContextProvider value={settings}>
+        <PageComponent {...props} />
+      </SettingsContextProvider>
+    );
+  };
+
+  WithSettings.getInitialProps = async ctx => {
+    const settings = getSettingsValue(ctx);
+
+    // Run getInitialProps from HOCed PageComponent
+    const pageProps =
+      typeof PageComponent.getInitialProps === 'function' ? await PageComponent.getInitialProps(ctx) : {};
+
+    // Pass props to PageComponent
+    return {
+      settings,
+      ...pageProps,
+    };
+  };
+
+  return WithSettings;
+};
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```js title="server.js" subtitle="Dynamic routing?"
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
+
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
+
+app.prepare().then(() => {
+  createServer((req, res) => {
+    const parsedUrl = parse(req.url, true);
+    const { pathname, query } = parsedUrl;
+    handle(req, res, parsedUrl);
+  }).listen(3000, err => {
+    if (err) throw err;
+    console.log('> Ready on http://localhost:3000');
+  });
+});
+
+```
+
+```
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
+
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
+
+app.prepare().then(() => {
+  createServer((req, res) => {
+    const parsedUrl = parse(req.url, true);
+    const { pathname, query } = parsedUrl;
+
+    if (pathname.startsWith('/test/dynamic_routing')) {
+      app.render(req, res, `/dynamic`, query);
+    } else {
+      handle(req, res, parsedUrl);
+    }
+  }).listen(3000, err => {
+    if (err) throw err;
+    console.log('> Ready on http://localhost:3000');
+  });
+});
+```
+
+```diff 14 subtitle="Sprawdzamy jaki jest aktualny adres"
+
+```
+
+```diff 15 subtitle="Render pages/dynamic.js"
+
+```
+
+
+</CodeSurfer>
+
+<Notes>
+
+- Kolejnym problemem w Next.js jest dynamiczny routing, czesto chcemy zoptymalizowac pod SEO tylko Landing page
+- Dla czesci dla zalogowanych userow chcemy np uzyc react-router 
+- Wtedy musimy utworzyc wlasny plik server.js
+
+</Notes>
+
+---
+
+<CodeSurfer>
+
+```js title="Nawigacja" subtitle=""
+
+import React from 'react';
+import { useRouter } from 'next/router'
+
+export const TestComponent = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/about');
+  };
+
+  return <button onClick={handleClick}>Test</button>;
+}
+
+```
+
+```js title="" subtitle=""
+
+import React from 'react';
+import { useRouter } from 'next/router'
+
+export const TestComponent = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/posts/[id]', '/posts/1', { shallow: true });
+  };
+
+  return <button onClick={handleClick}>Test</button>;
+}
+
+```
+
+```js title="" subtitle=""
+
+import React from 'react';
+import { useRouter } from 'next/router'
+
+export const TestComponent = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.replace('/posts/[id]', '/posts/1', { shallow: true });
+  };
+
+  return <button onClick={handleClick}>Test</button>;
+}
+
+```
+
+```js title="" subtitle=""
+
+import React from 'react';
+import Link from 'next/link';
+
+export const TestComponent = () => {
+  return (
+    <Link to="/about">
+      <a>Test</a>
+    </Link>
+  );
+}
+```
+
+```js title="" subtitle=""
+
+import React from 'react';
+import Link from 'next/link';
+
+export const TestComponent = () => {
+  return (
+    <Link to="/about">
+      <div>Test</div>
+    </Link>
+  );
+}
+```
+
+```js title="" subtitle=""
+
+import React from 'react';
+import Link from 'next/link';
+
+export const TestComponent = () => {
+  return (
+    <Link to="/about" prefetch={false}>
+      <div>Test</div>
+    </Link>
+  );
+}
+```
+
+```js title="" subtitle=""
+
+import React from 'react';
+import Link from 'next/link';
+
+export const TestComponent = () => {
+  return (
+    <Link to="/about" prefetch={false} scroll={false}>
+      <div>Test</div>
+    </Link>
+  );
+}
+```
+
+</CodeSurfer>
+
+<Notes>
+
+- A jak wyglada nawgiacja w Next.js?
+- Mamy dostepny Router jak rowniez hook do jego pobrania
+- Mamy komponent Link z wieloma opcjami
+
+</Notes>
+
+---
+
+Next.js demo
+
+---
+
+<ImageBackground src={diagram} size="20%" title="Więc co..."></ImageBackground>
+
+---
+dziękuję za uwagę ;)
